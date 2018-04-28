@@ -3,6 +3,7 @@ import InputPreview from '../components/InputPreview';
 import { connect } from 'react-redux';
 import { setMessage } from '../actions/message';
 import { Link } from 'react-router-dom';
+import RaisedButton from 'material-ui/RaisedButton';
 
 class App extends React.Component {
   _onChange = (value) => {
@@ -18,7 +19,10 @@ class App extends React.Component {
           onChange={this._onChange}
         />
         <Link to='about'>
-          <button>Go to About</button>
+          <RaisedButton
+            primary={true}
+            label="About Page"
+          />
         </Link>
       </div>
     );

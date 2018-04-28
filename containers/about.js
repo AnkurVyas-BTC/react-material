@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
+import RaisedButton from 'material-ui/RaisedButton';
 
 export default class About extends Component {
   render() {
@@ -7,7 +8,10 @@ export default class About extends Component {
       <div>
         About
         <Link to='/'>
-          <button> Go Home </button>
+          <RaisedButton
+            primary={true}
+            label="Go Home"
+          />
         </Link>
       </div >
     )
