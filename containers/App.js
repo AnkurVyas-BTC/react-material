@@ -1,34 +1,22 @@
 import React, { Component } from 'react';
+import InputPreview from '../components/InputPreview';
+import { connect } from 'react-redux';
+import {setMessage} from '../actions/message';
 
-export default class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {date: new Date()};
-  }
-
-  componentDidMount() {
-    this.timerID = setInterval(
-      () => this.tick(),
-      1000
-    );
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.timerID);
-  }
-
-  tick() {
-    this.setState({
-      date: new Date()
-    });
+class App extends React.Component {
+  _onChange = (value) => {
+    this.props.dispatch(setMessage(value))
   }
 
   render() {
+    const {message} = this.props.messageReducer;
     return (
-      <div>
-        <h1>Hello, world!</h1>
-        <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
-      </div>
+      <InputPreview
+        value={message}
+        onChange={this._onChange}
+      />
     );
   }
 }
+
+export default connect(state => state)(App);
