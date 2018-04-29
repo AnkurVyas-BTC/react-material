@@ -1,27 +1,7 @@
 import { SET_TASK_NAME, ADD_TASK, TOGGLE_TASK } from '../types/todo';
+import { todos } from '../initializers/todo';
 
-const initState = {
-  task_name: '',
-  todo_list: [
-    {
-      id: 1,
-      name: 'Task 1',
-      completed: false
-    },
-    {
-      id: 2,
-      name: 'Task 2',
-      completed: true
-    },
-    {
-      id: 3,
-      name: 'Task 3',
-      completed: false
-    }
-  ]
-};
-
-export default (state = initState, action) => {
+export default (state = todos, action) => {
   switch (action.type) {
     case SET_TASK_NAME:
       return { ...state, task_name: action.payload.name }
@@ -44,12 +24,6 @@ export default (state = initState, action) => {
         ),
         task_name: ''
       }
-
-      return state.map(todo =>
-        (todo.id === action.id)
-          ? { ...todo, completed: !todo.completed }
-          : todo
-      )
     default:
       return state
   }
